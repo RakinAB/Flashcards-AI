@@ -4,17 +4,17 @@ import { Box, Container, Toolbar, AppBar, Typography, Button, Link } from "@mui/
 
 export default function SignUpPage(){
     return(
-        <Container maxWidth='sm' sx={{color:'white'}}>
-            <AppBar position='static' sx={{backgroundColor: '#04d9af', borderRadius:4}}>
+        <Container maxWidth='100vw' sx={{color:'white'}}>
+            <AppBar position='static' sx={{backgroundColor: '#00ab89', borderRadius:4}}>
                 <Toolbar>
-                    <Typography variant="h6" sx={{flexGrow:1}}> Flash Cards</Typography>
+                    <Typography variant="h5" sx={{flexGrow:1}}> Flash Cards</Typography>
                     <Button color='inherit'>
                         <Link href="/sign-in" passHref underline="none" color="white">
                             Login
                         </Link>
                     </Button>
                     <Button color='inherit'>
-                        <Link href="/sign-up" passHref sx={{ textDecoration: 'none', color: 'white' }}>
+                        <Link href="/sign-up" passHref sx={{ textDecoration: 'none', color: 'white',  }}>
                             Sign Up
                         </Link>
                     </Button>
@@ -27,7 +27,7 @@ export default function SignUpPage(){
                 alignItems={'center'} 
                 justifyContent={'center'}
             >
-                <Typography variant="h4">Sign In</Typography>
+                <Typography variant="h4" p={4}>Sign In</Typography>
                 <SignIn />
             </Box>
         </Container>
