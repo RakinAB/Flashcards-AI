@@ -115,9 +115,8 @@ export default function Home() {
           <Grid item xs={12} md={6}>
             <Box sx={{
               p:3,
-              border: '1px solid',
-              borderColor:'grey',
-              borderRadius: 2
+              borderRadius: 2,
+              backgroundColor:'#444444'
             }}>
               <Typography variant="h5" gutterBottom>Basic</Typography>
               <Typography variant="h6" gutterBottom>$5/mo</Typography>
@@ -133,9 +132,8 @@ export default function Home() {
           <Grid item xs={12} md={6}>
             <Box sx={{
               p:3,
-              border: '1px solid',
-              borderColor:'grey',
-              borderRadius: 2
+              borderRadius: 2,
+              backgroundColor: '#00ab89'
             }}>
               <Typography variant="h5" gutterBottom>Pro</Typography>
               <Typography variant="h6" gutterBottom>$5/mo</Typography>
