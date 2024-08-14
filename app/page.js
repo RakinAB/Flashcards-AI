@@ -31,14 +31,14 @@ export default function Home() {
       }}
     >
       <Head>
-        <title color="white">Flashcards Headstarter AI</title>
+        <title color="white">Flash Cards</title>
         <meta name='description' content='Create some flashcards from your text' />
       </Head>
 
       
-      <AppBar position="static" sx={{borderRadius:4}}>
+      <AppBar position="static" sx={{borderRadius:4, backgroundColor: '#00ab89'}}>
         <Toolbar>
-          <Typography variant="h6" style={{flexGrow:1}}>Flashcards Headstarter AI</Typography>
+          <Typography variant="h5" style={{flexGrow:1}}>Flash Cards</Typography>
           <SignedOut>
             <Button color='inherit'>Login</Button>
             <Button color='inherit'>Create an Account</Button>
@@ -53,11 +53,11 @@ export default function Home() {
         textAlign:'center',
         my:4
       }}>
-        <Typography variant="h2">Welcome to Flashcards Headstarter AI</Typography>
+        <Typography variant="h2">Flash Cards</Typography>
         <Typography variant="h5">
           Quickly make flashcards from your text
         </Typography>
-        <Button variant="contained" color="primary" sx={{mt:2}}>Get started</Button>
+        <Button variant="contained" color="primary" sx={{mt:2, backgroundColor: '#03fccb', "&:hover":{backgroundColor:'#04d9af'}}}>Get started</Button>
       </Box>
 
 
@@ -118,35 +118,35 @@ export default function Home() {
               borderRadius: 2,
               backgroundColor:'#444444'
             }}>
-              <Typography variant="h5" gutterBottom>Basic</Typography>
-              <Typography variant="h6" gutterBottom>$5/mo</Typography>
-              <Typography textAlign={'left'}>
+              <Typography variant="h5" gutterBottom fontWeight={'bold'}>Basic</Typography>
+              <Typography variant="h6" gutterBottom fontWeight={'bold'}>$5/mo</Typography>
+              <Typography textAlign={'left'} fontWeight={'bold'}>
                 - Access to basic flashcard features
               </Typography>
-              <Typography textAlign={'left'}>
+              <Typography textAlign={'left'} fontWeight={'bold'}>
                 - Limited Storage
               </Typography>
-              <Button variant="contained" color="primary" sx={{mt:3}}>Choose Plan</Button>
+              <Button variant="contained" color="primary" sx={{mt:3, backgroundColor: '#03fccb', "&:hover":{backgroundColor:'#04d9af'}}}>Choose Plan</Button>
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>
             <Box sx={{
               p:3,
               borderRadius: 2,
-              backgroundColor: '#00ab89'
+              backgroundColor: '#00ab89',
             }}>
-              <Typography variant="h5" gutterBottom>Pro</Typography>
-              <Typography variant="h6" gutterBottom>$5/mo</Typography>
-              <Typography textAlign={'left'}>
+              <Typography variant="h5" gutterBottom fontWeight={'bold'}>Pro</Typography>
+              <Typography variant="h6" gutterBottom fontWeight={'bold'}>$10/mo</Typography>
+              <Typography textAlign={'left'} fontWeight={'bold'}>
                 - Unlimited Flashcards
               </Typography>
-              <Typography textAlign={'left'}>
+              <Typography textAlign={'left'} fontWeight={'bold'}>
                 - Unlimited Storage
               </Typography>
-              <Typography textAlign={'left'}>
+              <Typography textAlign={'left'} fontWeight={'bold'}>
                 - Priority Support
               </Typography>
-              <Button variant="contained" color="primary" sx={{mt:3}}>Choose Plan</Button>
+              <Button variant="contained" color="primary" sx={{mt:3, backgroundColor: '#03fccb', "&:hover":{backgroundColor:'#04d9af'}}}>Choose Plan</Button>
             </Box>
           </Grid>
         </Grid>

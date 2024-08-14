@@ -4,10 +4,10 @@ import { Box, Container, Toolbar, AppBar, Typography, Button, Link } from "@mui/
 
 export default function SignUpPage(){
     return(
-        <Container maxWidth='sm'>
-            <AppBar position='static' sx={{backgroundColor: '#3f51b5'}}>
+        <Container maxWidth='sm' sx={{color:'white'}}>
+            <AppBar position='static' sx={{backgroundColor: '#04d9af', borderRadius:4}}>
                 <Toolbar>
-                    <Typography variant="h6" sx={{flexGrow:1}}> Flashcards Headstarter AI</Typography>
+                    <Typography variant="h6" sx={{flexGrow:1}}> Flash Cards</Typography>
                     <Button color='inherit'>
                         <Link href="/sign-in" passHref underline="none" color="white">
                             Login
