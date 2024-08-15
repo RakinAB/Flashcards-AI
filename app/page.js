@@ -42,7 +42,7 @@ export default function Home() {
           <Typography variant="h5" style={{flexGrow:1}}>Flash Cards</Typography>
           <SignedOut>
             <Button color='inherit' href="/sign-in">Login</Button>
-            <Button color='inherit' hred="/sign-up">Create an Account</Button>
+            <Button color='inherit' href="/sign-up">Create an Account</Button>
           </SignedOut>
           <SignedIn>
             <UserButton />
