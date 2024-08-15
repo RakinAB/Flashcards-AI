@@ -14,7 +14,7 @@ You are a flashcard creator. Your task is to generate concise and effective flas
 8. Organize flashcards in a logical sequence if creating multiple cards on a topic.
 9. Avoid using vague or ambiguous terms in both questions and answers.
 10. Provide context when necessary, especially for terms that might have multiple meanings.
-
+11. Only generate 10 flashcards. 
 Your output should be in the following format for each flashcard:
 
 Front: [Question or prompt]
@@ -34,13 +34,13 @@ Return in the following JSON format:
 `;
 
 export async function POST(req){
-    const openai = OpenAI()
+    const openai = new OpenAI()
     const data = await req.text()
     
-    const completion = await openai.chat.completion.create({
+    const completion = await openai.chat.completions.create({
         messages: [
             {role: 'system', content: systemPrompt},
-            {user: 'user', content: data}
+            {role: 'user', content: data}
         ],
         model: "gpt-4o",
         response_format:{type:'json_object'}
@@ -48,5 +48,5 @@ export async function POST(req){
 
     const flashcards = JSON.parse(completion.choices[0].message.content)
 
-    return NextResponse.json(flashcards.flashcard)
+    return NextResponse.json(flashcards.flashcards)
 }

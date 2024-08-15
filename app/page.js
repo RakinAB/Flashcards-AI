@@ -28,7 +28,6 @@ export default function Home() {
       sx={{
         color: '#f0f0f0', 
         padding: 0,
-        background: 'linear-gradient(135deg, #2c2c2c, #4f4f4f)', // Gray gradient
         minHeight: '100vh'
       }}
     >
@@ -52,108 +51,109 @@ export default function Home() {
       </AppBar>
 
       <Box sx={{
-  pt: { xs: 10, md: 20 },  // Responsive padding
-  pb: { xs: 10, md: 20 },
-  display: 'flex',
-  my: 4,
-  flexDirection: { xs: 'column', md: 'row' },  // Stack on small screens, row on medium and up
-  justifyContent: { xs: 'center', md: 'space-evenly' },
-  alignItems: { xs: 'center', md: 'left' },
-  backgroundColor: '#1c1c1c',
-  borderRadius: 2,
-  position: 'relative',
-  overflow: 'hidden',
-  boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-  "::before": {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    backgroundImage: 'url("/noise.png")',
-    opacity: 0.02,
-    zIndex: 2,
-  },
-  "::after": {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    background: `
-      linear-gradient(
-        to right,
-        rgba(28, 28, 28, 1) 0%,
-        rgba(28, 28, 28, 0.95) 40%,
-        rgba(28, 28, 28, 0.8) 60%,
-        rgba(28, 28, 28, 0.6) 80%,
-        rgba(28, 28, 28, 0.4) 100%
-      ),
-      url('/grid.png')
-    `,
-    backgroundSize: 'cover', 
-    backgroundPosition: 'right',
-    opacity: 0.8,
-    zIndex: 1,
-  },
-}}>
-  <Box 
-    display={'flex'} 
-    flexDirection={'column'}
-    sx={{ 
-      position: 'relative', 
-      zIndex: 3,
-      textShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      textAlign: { xs: 'center', md: 'left' },  // Center text on small screens
-      mb: { xs: 4, md: 0 }  // Add margin bottom on small screens
-    }}
-  >
-    <Typography variant="h1" sx={{ 
-      color: '#ffffff',
-      fontWeight: 'bold',
-      letterSpacing: '-1px',
-      fontSize: { xs: '4.5rem', md: '6.5rem' }  // Responsive font size
-    }}>
-      FLASH Cards
-    </Typography>
-    <Typography variant="h5" sx={{ 
-      color: 'rgba(255,255,255,0.9)',
-      mt: 2,
-      fontSize: { xs: '1rem', md: '1.5rem' }  // Responsive font size
-    }}>
-      Quickly make flashcards from your text
-    </Typography>
-  </Box>
-  <Button 
-    variant="contained" 
-    color="primary" 
-    sx={{
-      mt: { xs: 2, md: 0 },  // Adjust top margin for different screen sizes
-      backgroundColor: '#03fccb',
-      "&:hover": {
-        backgroundColor: '#04d9af'
-      }, 
-      borderRadius: 2,
-      padding: '10px 32px',
-      fontSize: { xs: '1rem', md: '1.25rem' },  // Responsive font size
-      position: 'relative',
-      zIndex: 3,
-      fontWeight: 'bold',
-      textTransform: 'none',
-      boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-      transition: 'all 0.3s ease',
-      "&:hover": {
-        backgroundColor: '#04d9af',
-        transform: 'translateY(-2px)',
-        boxShadow: '0 6px 8px rgba(0,0,0,0.15)',
-      }
-    }}
-  >
-    Get started
-  </Button>
-</Box>
+        pt: { xs: 10, md: 20 },  // Responsive padding
+        pb: { xs: 10, md: 20 },
+        display: 'flex',
+        my: 4,
+        flexDirection: { xs: 'column', md: 'row' },  // Stack on small screens, row on medium and up
+        justifyContent: { xs: 'center', md: 'space-evenly' },
+        alignItems: { xs: 'center', md: 'left' },
+        backgroundColor: '#1c1c1c',
+        borderRadius: 2,
+        position: 'relative',
+        overflow: 'hidden',
+        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+        "::before": {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          backgroundImage: 'url("/noise.png")',
+          opacity: 0.02,
+          zIndex: 2,
+        },
+        "::after": {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          background: `
+            linear-gradient(
+              to right,
+              rgba(28, 28, 28, 1) 0%,
+              rgba(28, 28, 28, 0.95) 40%,
+              rgba(28, 28, 28, 0.8) 60%,
+              rgba(28, 28, 28, 0.6) 80%,
+              rgba(28, 28, 28, 0.4) 100%
+            ),
+            url('/grid.png')
+          `,
+          backgroundSize: 'cover', 
+          backgroundPosition: 'right',
+          opacity: 0.8,
+          zIndex: 1,
+        },
+      }}>
+        <Box 
+          display={'flex'} 
+          flexDirection={'column'}
+          sx={{ 
+            position: 'relative', 
+            zIndex: 3,
+            textShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            textAlign: { xs: 'center', md: 'left' },  // Center text on small screens
+            mb: { xs: 4, md: 0 }  // Add margin bottom on small screens
+          }}
+        >
+          <Typography variant="h1" sx={{ 
+            color: '#ffffff',
+            fontWeight: 'bold',
+            letterSpacing: '-1px',
+            fontSize: { xs: '4.5rem', md: '6.5rem' }  // Responsive font size
+          }}>
+            FLASH Cards
+          </Typography>
+          <Typography variant="h5" sx={{ 
+            color: 'rgba(255,255,255,0.9)',
+            mt: 2,
+            fontSize: { xs: '1rem', md: '1.5rem' }  // Responsive font size
+          }}>
+            Quickly make flashcards from your text
+          </Typography>
+        </Box>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          href="/generate"
+          sx={{
+            mt: { xs: 2, md: 0 },  // Adjust top margin for different screen sizes
+            backgroundColor: '#03fccb',
+            "&:hover": {
+              backgroundColor: '#04d9af'
+            }, 
+            borderRadius: 2,
+            padding: '10px 32px',
+            fontSize: { xs: '1rem', md: '1.25rem' },  // Responsive font size
+            position: 'relative',
+            zIndex: 3,
+            fontWeight: 'bold',
+            textTransform: 'none',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+            transition: 'all 0.3s ease',
+            "&:hover": {
+              backgroundColor: '#04d9af',
+              transform: 'translateY(-2px)',
+              boxShadow: '0 6px 8px rgba(0,0,0,0.15)',
+            }
+          }}
+        >
+          Get started
+        </Button>
+      </Box>
 
 
       <Box sx={{my:6, px:4}}>
