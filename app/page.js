@@ -1,5 +1,6 @@
 
 'use client'
+
 import Image from "next/image";
 import getStripe from "@/utils/get-stripe";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
@@ -22,6 +23,31 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Home() {
+
+  const handleSubmit = async ()=>{
+    const checkoutSession = await fetch('/api/checkout_sessions', {
+      method: 'POST',
+      headers:{
+        origin: 'https://localhost/3000'
+      }
+    })
+
+    const checkoutSessionJSON = await checkoutSession.json()
+
+    if(checkoutSession.statusCode === 500){
+      console.error(checkoutSessionJSON)
+      return
+    }
+
+    const stripe = await getStripe()
+    const {error} = await stripe.redirectToCheckout({
+      sessionId: checkoutSessionJSON.id,
+    })
+
+    if(error){
+      console.warn(error.message)
+    }
+  }
   return (
     <Container 
       maxWidth='100vw'
@@ -284,6 +310,7 @@ export default function Home() {
                       boxShadow: '0 6px 8px rgba(0,0,0,0.15)',
                     }
                   }}
+                  onClick={handleSubmit}
               >
                 Choose Plan
               </Button>
