@@ -46,6 +46,10 @@ export default function Generate(){
         setOpen(false)
     }
 
+    if(!isLoaded || !isSignedIn){
+        return <></>
+    }
+
     const saveFlashcards = async () => {
         if(!name) {
             alert('Please enter a name...')
@@ -53,7 +57,7 @@ export default function Generate(){
         }
 
         const batch = writeBatch(db)
-        const userDocRef = doc(collection(db, 'user'), doc.id)
+        const userDocRef = doc(collection(db, 'users'), user.id)
         const docSnap = await getDoc(userDocRef)
 
         if(docSnap.exists()){
@@ -62,7 +66,7 @@ export default function Generate(){
                 alert("Flashcard collection with the same name already exists...")
                 return
             } else{
-                collections.push(name)
+                collections.push({name})
                 batch.set(userDocRef, {flashcards: collections}, {merge:true})
             }
         } else{
