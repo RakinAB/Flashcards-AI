@@ -1,11 +1,12 @@
 'use client'
 
 import { useUser } from "@clerk/nextjs"
-import { Box, Button, Card, CardActionArea, CardContent, CircularProgress, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Paper, TextField, Typography } from "@mui/material"
+import { Link, AppBar, Toolbar, Box, Button, Card, CardActionArea, CardContent, CircularProgress, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Paper, TextField, Typography } from "@mui/material"
 import { getDoc, writeBatch, doc, setDoc, collection} from "firebase/firestore"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { db } from "@/firebase"
+import { UserButton, SignedIn, SignedOut } from "@clerk/nextjs"
 
 export default function Generate(){
     const {isLoaded, isSignedIn, user} = useUser()
@@ -47,7 +48,7 @@ export default function Generate(){
     }
 
     if(!isLoaded || !isSignedIn){
-        return <></>
+        router.push(`/sign-in`)
     }
 
     const saveFlashcards = async () => {
@@ -86,6 +87,30 @@ export default function Generate(){
 
     return(
         <Container maxWidth='md'>
+            <AppBar position="static" sx={{borderRadius:4, backgroundColor: '#00ab89'}}>
+                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Link 
+                    href="/" 
+                    passHref
+                    sx={{
+                        cursor: 'pointer',
+                        textDecoration: 'none', // Remove underline
+                        color: 'white', // Set text color to white
+                      }}
+                >
+                    <Typography variant="h5" sx={{ flexGrow: 1, cursor: 'pointer' }}>
+                        Flash Cards
+                    </Typography>
+                </Link>
+                <SignedOut>
+                    <Button color='inherit' href="/sign-in">Login</Button>
+                    <Button color='inherit' href="/sign-up">Create an Account</Button>
+                </SignedOut>
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
+                </Toolbar>
+            </AppBar>
             <Box 
                 sx={{
                     mt:4, 

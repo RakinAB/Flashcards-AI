@@ -8,14 +8,13 @@ const formatAmountForStripe = (amount) => {
 }
 
 export async function GET(req){
-  const searchParams = req.nextURL.searchParams
-  const session_id = searchParams.get('session_id')
-
+  const url = new URL(req.url)
+  const session_id = url.searchParams.get("session_id")
   try{
     const checkoutSession = await stripe.checkout.sessions.retrieve(session_id)
     return NextResponse.json(checkoutSession)
   }catch(error){
-    console.log('Error retrieving checkout session')
+    console.error('Error retrieving checkout session', error)
     return NextResponse.json({error: {message:error.message}}, {status:500})
   }
 }

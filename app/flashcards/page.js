@@ -5,8 +5,8 @@ import { useState, useEffect } from "react"
 import { collection, doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "@/firebase"
 import { useRouter } from "next/navigation"
-import { Card, CardActionArea, CardContent, Container, Grid, Typography } from "@mui/material"
-
+import { AppBar, Button, Toolbar, Link, Card, CardActionArea, CardContent, Container, Grid, Typography } from "@mui/material"
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 export default function Flashcards(){
     const {isLoaded, isSignedIn, user} = useUser()
     const [flashcards, setFlashcards] = useState([])
@@ -29,7 +29,7 @@ export default function Flashcards(){
     },[user]) 
 
     if(!isLoaded || !isSignedIn){
-        return <></>
+        router.push(`/sign-in`)
     }
 
     const handleCardClick = (id) =>{
@@ -38,6 +38,30 @@ export default function Flashcards(){
 
     return(
         <Container maxWidth='100vw'>
+            <AppBar position="static" sx={{borderRadius:4, backgroundColor: '#00ab89'}}>
+                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Link 
+                    href="/" 
+                    passHref
+                    sx={{
+                        cursor: 'pointer',
+                        textDecoration: 'none', // Remove underline
+                        color: 'white', // Set text color to white
+                      }}
+                >
+                    <Typography variant="h5" sx={{ flexGrow: 1, cursor: 'pointer' }}>
+                        Flash Cards
+                    </Typography>
+                </Link>
+                <SignedOut>
+                    <Button color='inherit' href="/sign-in">Login</Button>
+                    <Button color='inherit' href="/sign-up">Create an Account</Button>
+                </SignedOut>
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
+                </Toolbar>
+            </AppBar>
             <Grid container spacing={3} sx ={{mt:4}}>
                 {flashcards.map((flashcard, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
