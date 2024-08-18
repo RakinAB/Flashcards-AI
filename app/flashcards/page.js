@@ -28,7 +28,10 @@ export default function Flashcards(){
         getFlashcards()  
     },[user]) 
 
-    if(!isLoaded || !isSignedIn){
+    if(!isLoaded){
+        return <></>
+    }
+    if(!isSignedIn){
         router.push(`/sign-in`)
     }
 
@@ -49,8 +52,8 @@ export default function Flashcards(){
                         color: 'white', // Set text color to white
                       }}
                 >
-                    <Typography variant="h5" sx={{ flexGrow: 1, cursor: 'pointer' }}>
-                        Flash Cards
+                    <Typography variant="h5" sx={{ flexGrow: 1, cursor: 'pointer', fontWeight:'bold' }}>
+                        FLASH Cards
                     </Typography>
                 </Link>
                 <SignedOut>
@@ -58,10 +61,12 @@ export default function Flashcards(){
                     <Button color='inherit' href="/sign-up">Create an Account</Button>
                 </SignedOut>
                 <SignedIn>
+                <Button color='inherit' href="/generate" sx={{fontWeight:'bold'}}>Generate +</Button>
                     <UserButton />
                 </SignedIn>
                 </Toolbar>
             </AppBar>
+            <Typography variant='h2' sx={{mt:4, fontWeight:'bold'}}>Sets</Typography>
             <Grid container spacing={3} sx ={{mt:4}}>
                 {flashcards.map((flashcard, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>

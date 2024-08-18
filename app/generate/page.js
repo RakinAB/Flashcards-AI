@@ -47,8 +47,11 @@ export default function Generate(){
         setOpen(false)
     }
 
-    if(!isLoaded || !isSignedIn){
-        router.push(`/sign-in`)
+    if(!isLoaded){
+        return <></>
+    }
+    if(!isSignedIn){
+        router.push('/sign-in')
     }
 
     const saveFlashcards = async () => {
@@ -98,8 +101,8 @@ export default function Generate(){
                         color: 'white', // Set text color to white
                       }}
                 >
-                    <Typography variant="h5" sx={{ flexGrow: 1, cursor: 'pointer' }}>
-                        Flash Cards
+                    <Typography variant="h5" sx={{ flexGrow: 1, cursor: 'pointer', fontWeight:'bold' }}>
+                        FLASH Cards
                     </Typography>
                 </Link>
                 <SignedOut>
@@ -107,6 +110,7 @@ export default function Generate(){
                     <Button color='inherit' href="/sign-up">Create an Account</Button>
                 </SignedOut>
                 <SignedIn>
+                    <Button color='inherit' href="/flashcards" sx={{fontWeight:'bold'}}> My Sets</Button>
                     <UserButton />
                 </SignedIn>
                 </Toolbar>
@@ -120,7 +124,7 @@ export default function Generate(){
                     alignItems: 'center',
                 }}
             >
-                <Typography variant="h3" sx={{mb:2}}>
+                <Typography variant="h3" sx={{mb:2, fontWeight:'bold'}}>
                     Generate Flashcards
                 </Typography>
                 <Paper sx={{p:4, width:'100%', backgroundColor:'#444444', }}>

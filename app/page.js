@@ -1,7 +1,6 @@
 
 'use client'
 
-import Image from "next/image";
 import getStripe from "@/utils/get-stripe";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { AppBar, Container, Toolbar, Typography, Button, Box, Grid, Paper, Stack} from "@mui/material";
@@ -25,6 +24,7 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 export default function Home() {
 
   const handleSubmit = async ()=>{
+
     const checkoutSession = await fetch('/api/checkout_sessions', {
       method: 'POST',
       headers:{
@@ -48,6 +48,7 @@ export default function Home() {
       console.warn(error.message)
     }
   }
+
   return (
     <Container 
       maxWidth='100vw'
@@ -65,7 +66,7 @@ export default function Home() {
       
       <AppBar position="static" sx={{borderRadius:4, backgroundColor: '#00ab89'}}>
         <Toolbar>
-          <Typography variant="h5" style={{flexGrow:1}}>Flash Cards</Typography>
+          <Typography variant="h5" style={{flexGrow:1, fontWeight:'bold'}}>FLASH Cards</Typography>
           <SignedOut>
             <Button color='inherit' href="/sign-in">Login</Button>
             <Button color='inherit' href="/sign-up">Create an Account</Button>
@@ -154,7 +155,7 @@ export default function Home() {
         <Button 
           variant="contained" 
           color="primary" 
-          href="/generate"
+          href="/flashcards"
           sx={{
             mt: { xs: 2, md: 0 },  // Adjust top margin for different screen sizes
             backgroundColor: '#03fccb',

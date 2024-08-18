@@ -4,14 +4,15 @@ import { useUser } from "@clerk/nextjs"
 import { useEffect, useState } from "react"
 import { collection, doc, getDoc, getDocs } from "firebase/firestore"
 import { db } from "@/firebase"
-
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 import { useSearchParams } from "next/navigation"
-import { Box, Button, Card, CardActionArea, CardContent, CircularProgress, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Paper, TextField, Typography } from "@mui/material"
-import { useRouter } from "next/router"
+import { AppBar, Link, Toolbar, Box, Button, Card, CardActionArea, CardContent, CircularProgress, Container, Grid, Typography } from "@mui/material"
+import { useRouter } from "next/navigation"
 
 export default function Flashcard(){
     const {isLoaded, isSignedIn, user} = useUser()
     const [flashcards, setFlashcards] = useState([])
+    const [setName, setSetName] = useState("") // New state for storing the set name
     const [flipped, setFlipped] = useState([])
     const router = useRouter()
 
@@ -29,9 +30,20 @@ export default function Flashcard(){
                 flashcards.push({id:doc.id, ...doc.data()})
             })
             setFlashcards(flashcards)
+
+            // Fetch the set name from the user's document
+            const userDocRef = doc(collection(db, 'users'), user.id)
+            const userDocSnap = await getDoc(userDocRef)
+            if (userDocSnap.exists()) {
+                const collections = userDocSnap.data().flashcards || []
+                const currentSet = collections.find((f) => f.name === search)
+                if (currentSet) {
+                    setSetName(currentSet.name)
+                }
+            }
         }
         getFlashcard()  
-    },[user]) 
+    },[user, search]) // Add 'search' to the dependency array
 
     const handleCardClick = (id) =>{
         setFlipped((prev) => ({
@@ -40,7 +52,10 @@ export default function Flashcard(){
         }))
     }
 
-    if(!isLoaded || !isSignedIn){
+    if(!isLoaded){
+        return <></>
+    }
+    if(!isSignedIn){
         router.push(`/sign-in`)
     }
 
@@ -53,12 +68,12 @@ export default function Flashcard(){
                     passHref
                     sx={{
                         cursor: 'pointer',
-                        textDecoration: 'none', // Remove underline
-                        color: 'white', // Set text color to white
+                        textDecoration: 'none',
+                        color: 'white',
                       }}
                 >
-                    <Typography variant="h5" sx={{ flexGrow: 1, cursor: 'pointer' }}>
-                        Flash Cards
+                    <Typography variant="h5" sx={{ flexGrow: 1, cursor: 'pointer', fontWeight:'bold' }}>
+                        FLASH Cards
                     </Typography>
                 </Link>
                 <SignedOut>
@@ -66,13 +81,21 @@ export default function Flashcard(){
                     <Button color='inherit' href="/sign-up">Create an Account</Button>
                 </SignedOut>
                 <SignedIn>
+                    <Button color='inherit' href="/generate">Generate +</Button>
+                    <Button color='inherit' href="/flashcards"> My Sets</Button>
                     <UserButton />
                 </SignedIn>
                 </Toolbar>
             </AppBar>
+            
+            {/* Display the flashcard set name */}
+            <Typography variant="h3" sx={{ mt: 4, fontWeight:'bold' }}>
+                {setName}
+            </Typography>
+
             <Grid container spacing={3} sx={{mt:4}}>
                 {flashcards.map((flashcard, index) => (
-                    <Grid item xs={15} sm={7} md={5} key={index}>
+                    <Grid item xs={12} sm={6} md={4} key={index}>
                         <Card sx={{
                                 backgroundColor: '#444444',
                                 color: '#f0f0f0',

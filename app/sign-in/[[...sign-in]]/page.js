@@ -6,13 +6,20 @@ export default function SignUpPage(){
     return(
         <Container maxWidth='100vw' sx={{color:'white'}}>
             <AppBar position='static' sx={{backgroundColor: '#00ab89', borderRadius:4}}>
-                <Toolbar>
-                    <Typography variant="h5" sx={{flexGrow:1}}> Flash Cards</Typography>
-                    <Button color='inherit'>
-                        <Link href="/sign-in" passHref underline="none" color="white">
-                            Login
-                        </Link>
-                    </Button>
+                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}W>
+                    <Link 
+                        href="/" 
+                        passHref
+                        sx={{
+                            cursor: 'pointer',
+                            textDecoration: 'none', // Remove underline
+                            color: 'white', // Set text color to white
+                        }}
+                    >
+                        <Typography variant="h5" sx={{ flexGrow: 1, cursor: 'pointer' }}>
+                            FLASH Cards
+                        </Typography>
+                    </Link>
                     <Button color='inherit'>
                         <Link href="/sign-up" passHref sx={{ textDecoration: 'none', color: 'white',  }}>
                             Sign Up
